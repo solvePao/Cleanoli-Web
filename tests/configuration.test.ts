@@ -100,8 +100,10 @@ describe('product artwork', () => {
     const layout = read('src/layouts/Layout.astro')
 
     expect(existsSync(join(root, 'assets/4A035189-C821-4892-B2C4-FE461C30127B.png'))).toBe(true)
-    expect(hero).toContain(':src="appIcon"')
-    expect(gallery).toContain(':d="visual.icon"')
+    expect(hero).toContain('cleanupAsset.src')
+    expect(gallery).toContain('overviewAsset.src')
+    expect(gallery).toContain('explorerAsset.src')
+    expect(gallery).toContain('analyzerAsset.src')
     expect(header).toContain('appIconAsset.src')
     expect(layout).toContain('rel="apple-touch-icon" href={appIcon.src}')
     expect(layout).not.toContain('href="/favicon.svg"')

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import cleanupAsset from '../../assets/cleanoli-cleanup.png'
 import appIconAsset from '../../assets/4A035189-C821-4892-B2C4-FE461C30127B.png'
 
 const appIcon = appIconAsset.src
@@ -27,10 +28,10 @@ const appIcon = appIconAsset.src
 
     <div class="product-hero-art">
       <img
-        :src="appIcon"
-        alt="Cleanoli app icon"
-        width="512"
-        height="512"
+        :src="cleanupAsset.src"
+        alt="Cleanoli Smart Cleanup ready to scan"
+        width="2560"
+        height="1600"
       />
     </div>
 
@@ -53,7 +54,7 @@ const appIcon = appIconAsset.src
 
 <style scoped>
 .product-hero-art {
-  width: min(460px, 100%);
+  width: min(980px, 100%);
   padding: 12px;
   background: #fff;
   overflow: hidden;
@@ -65,7 +66,9 @@ const appIcon = appIconAsset.src
 .product-hero-art img {
   display: block;
   width: 100%;
-  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
   border-radius: 24px;
 }
 

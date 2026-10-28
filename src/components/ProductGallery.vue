@@ -1,17 +1,24 @@
 <script setup lang="ts">
+import overviewAsset from '../../assets/cleanoli-overview.png'
+import explorerAsset from '../../assets/cleanoli-space-explorer.png'
+import analyzerAsset from '../../assets/cleanoli-disk-analyzer.png'
+
 const visuals = [
   {
-    icon: 'M12 3v9h9A9 9 0 1 1 12 3Zm3 0a9 9 0 0 1 6 6h-6Z',
+    src: overviewAsset.src,
+    alt: 'Cleanoli storage overview',
     title: 'See storage clearly',
     description: 'Get a calm visual overview of used, available, and purgeable space on your Mac.',
   },
   {
-    icon: 'M4 5h16v14H4z M4 9h16 M8 15h3',
+    src: analyzerAsset.src,
+    alt: 'Cleanoli disk analyzer',
     title: 'Understand reclaimable space',
     description: 'Know what macOS can free automatically and what you can review yourself.',
   },
   {
-    icon: 'M5 5h14v14H5z M8 12l3 3 5-6',
+    src: explorerAsset.src,
+    alt: 'Cleanoli Space Explorer',
     title: 'Stay in control',
     description: 'Preview, select, and clean with confidence—nothing is removed automatically.',
   },
@@ -32,7 +39,7 @@ const visuals = [
         :class="{ 'gallery-card-reversed': index % 2 === 1 }"
       >
         <div class="gallery-media">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path :d="visual.icon" /></svg>
+          <img :src="visual.src" :alt="visual.alt" width="2560" height="1600" loading="lazy" />
         </div>
         <div class="gallery-copy">
           <span class="gallery-index">0{{ index + 1 }}</span>
@@ -68,8 +75,7 @@ const visuals = [
   border-radius: 16px;
   box-shadow: 0 14px 32px color-mix(in srgb, var(--cleanoli-ink) 10%, transparent);
 }
-.gallery-media { min-height: 210px; display: grid; place-items: center; }
-.gallery-media svg { width: 80px; height: 80px; fill: none; stroke: currentColor; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+.gallery-media img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: center; }
 .gallery-copy { max-width: 390px; padding: 10px 4px; }
 .gallery-index { display: block; margin-bottom: 14px; color: var(--cleanoli-accent); font-size: 11px; font-weight: 850; letter-spacing: 0.14em; }
 .gallery-copy h3 { margin: 0; font-size: 21px; letter-spacing: -0.03em; }
