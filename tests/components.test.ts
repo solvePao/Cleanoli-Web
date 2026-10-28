@@ -47,22 +47,22 @@ describe('primary navigation', () => {
 })
 
 describe('download actions', () => {
-  it('uses the static latest DMG link in the hero', () => {
+  it('directs visitors to release availability in the hero', () => {
     const wrapper = mount(Hero)
     const download = wrapper.get(
-      'a[href="https://github.com/solvePao/Cleanoli-Web/releases/latest/download/Cleanoli.dmg"]',
+      'a[href="#download-options"]',
     )
 
-    expect(download.text()).toContain('Download Latest')
+    expect(download.text()).toContain('Release availability')
   })
 
-  it('offers the latest DMG and the documented Homebrew installation', () => {
+  it('does not offer unavailable DMG or Homebrew downloads', () => {
     const wrapper = mount(DownloadOptions)
 
-    expect(wrapper.get('a[href="https://github.com/solvePao/Cleanoli-Web/releases/latest/download/Cleanoli.dmg"]')).toBeTruthy()
-    expect(wrapper.text()).toContain('brew tap solvePao/tap')
-    expect(wrapper.text()).toContain('brew install --cask cleanoli')
-    expect(wrapper.get('a[href="https://github.com/solvePao/homebrew-tap"]')).toBeTruthy()
+    expect(wrapper.text()).toContain('DMG · Coming soon')
+    expect(wrapper.text()).toContain('Homebrew · Coming soon')
+    expect(wrapper.find('a[href*="Cleanoli.dmg"]').exists()).toBe(false)
+    expect(wrapper.text()).not.toContain('brew install --cask cleanoli')
   })
 
   it('marks the Mac App Store option as coming soon without a destination link', () => {

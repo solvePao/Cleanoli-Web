@@ -4,7 +4,7 @@ import { ref } from 'vue'
 const faqs = [
   {
     q: 'How do activation and updates work?',
-    a: 'App Store installations use Apple purchases and App Store updates; TestFlight uses sandbox purchases and beta updates. DMG and Homebrew installations require Vending Machine access. DMG updates use the app’s signed update feed, while Homebrew updates use brew upgrade --cask cleanoli. Purchases do not transfer between Apple and direct distribution.',
+    a: 'App Store installations use Apple purchases and App Store updates; TestFlight uses sandbox purchases and beta updates. Direct installations require Vending Machine access. Purchases do not transfer between Apple and direct distribution.',
   },
   {
     q: 'What does Cleanoli help me clean?',
@@ -20,7 +20,7 @@ const faqs = [
   },
   {
     q: 'Where does the download come from?',
-    a: 'Download buttons point directly to the latest Cleanoli.dmg published in the project’s GitHub Releases.',
+    a: 'Cleanoli downloads are being prepared. Availability will be announced on this page.',
   },
 ]
 

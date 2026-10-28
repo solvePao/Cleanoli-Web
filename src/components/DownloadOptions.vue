@@ -1,15 +1,9 @@
-<script setup lang="ts">
-const latestDmgUrl = 'https://github.com/solvePao/Cleanoli-Web/releases/latest/download/Cleanoli.dmg'
-const releasesUrl = 'https://github.com/solvePao/Cleanoli-Web/releases'
-const homebrewUrl = 'https://github.com/solvePao/homebrew-tap'
-</script>
-
 <template>
   <section class="download-options" id="download-options" aria-labelledby="download-options-title">
     <div class="download-heading">
-      <p class="eyebrow">Available now</p>
+      <p class="eyebrow">Release availability</p>
       <h2 id="download-options-title">Choose how you install<br /><span class="text-accent-light">Cleanoli.</span></h2>
-      <p>DMG and Homebrew installations activate through Vending Machine. App Store purchases and updates stay with Apple.</p>
+      <p>Cleanoli downloads are being prepared. Check back here for availability.</p>
     </div>
 
     <div class="download-grid">
@@ -18,15 +12,14 @@ const homebrewUrl = 'https://github.com/solvePao/homebrew-tap'
           <span class="download-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 5-5m-5 5-5-5"/><path d="M5 19h14"/></svg>
           </span>
-          <span class="availability">Latest release</span>
+          <span class="availability">Coming soon</span>
         </div>
         <div>
           <h3>Download the DMG</h3>
-          <p>Download the signed, notarized Cleanoli disk image. Activate with Vending Machine; install updates through the app’s signed update feed.</p>
+          <p>The signed and notarized Cleanoli disk image is being prepared for release.</p>
         </div>
         <div class="download-actions">
-          <a class="button button-primary" :href="latestDmgUrl">Download latest DMG <span aria-hidden="true">→</span></a>
-          <a class="text-link" :href="releasesUrl" target="_blank" rel="noopener">View all releases</a>
+          <span class="soon-label">DMG · Coming soon</span>
         </div>
       </article>
 
@@ -35,17 +28,13 @@ const homebrewUrl = 'https://github.com/solvePao/homebrew-tap'
           <span class="download-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path d="M7 3h10l-1 6H8L7 3Z"/><path d="M8 9v3a4 4 0 0 0 8 0V9M12 16v5m-3 0h6"/></svg>
           </span>
-          <span class="availability">Homebrew</span>
+          <span class="availability">Coming soon</span>
         </div>
         <div>
           <h3>Install from the tap</h3>
-          <p>Use the public SolvePao tap for a terminal-friendly installation and simple upgrades.</p>
-          <div class="brew-command" aria-label="Homebrew installation commands">
-            <code>brew tap solvePao/tap</code>
-            <code>brew install --cask cleanoli</code>
-          </div>
+          <p>A Cleanoli cask is being prepared for the SolvePao tap.</p>
         </div>
-        <a class="text-link" :href="homebrewUrl" target="_blank" rel="noopener">Open the Homebrew tap <span aria-hidden="true">→</span></a>
+        <span class="soon-label">Homebrew · Coming soon</span>
       </article>
 
       <article class="download-card download-card-soon">
@@ -57,7 +46,7 @@ const homebrewUrl = 'https://github.com/solvePao/homebrew-tap'
         </div>
         <div>
           <h3>Mac App Store</h3>
-          <p>Cleanoli is coming to the Mac App Store. Until then, use the latest DMG or Homebrew.</p>
+          <p>Cleanoli is being prepared for the Mac App Store.</p>
         </div>
         <span class="soon-label" aria-label="Mac App Store availability: coming soon">App Store · Coming soon</span>
       </article>

@@ -16,14 +16,14 @@ const appIcon = appIconAsset.src
       <div class="actions">
         <a
           class="button button-primary"
-          href="https://github.com/solvePao/Cleanoli-Web/releases/latest/download/Cleanoli.dmg"
+          href="#download-options"
         >
-          Download Latest
+          Release availability
           <span aria-hidden="true">→</span>
         </a>
         <a class="button button-outline" href="#download-options">Install options</a>
       </div>
-      <p class="hero-note">Latest DMG and Homebrew available · Mac App Store coming soon</p>
+      <p class="hero-note">Cleanoli downloads are being prepared</p>
     </div>
 
     <div class="product-hero-art">

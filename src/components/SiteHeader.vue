@@ -37,6 +37,6 @@ const appIcon = appIconAsset.src
       <a href="https://github.com/solvePao/Cleanoli-Web/releases" target="_blank" rel="noopener">Releases</a>
       <a href="https://github.com/solvePao/Cleanoli-Web" target="_blank" rel="noopener">GitHub</a>
     </nav>
-    <a class="header-cta" href="https://github.com/solvePao/Cleanoli-Web/releases/latest/download/Cleanoli.dmg">Download</a>
+    <a class="header-cta" href="/#download-options">Availability</a>
   </header>
 </template>
