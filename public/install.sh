@@ -2,10 +2,10 @@
 
 set -eu
 
-readonly repository="solvePao/Mac-Noodle-Web"
+readonly repository="solvePao/Cleanoli-Web"
 readonly base_url="https://github.com/$repository/releases/latest/download"
-readonly dmg_name="Mac-Noodle.dmg"
-download_dir=$(mktemp -d "${TMPDIR:-/tmp}/mac-noodle-install.XXXXXX")
+readonly dmg_name="Cleanoli.dmg"
+download_dir=$(mktemp -d "${TMPDIR:-/tmp}/cleanoli-install.XXXXXX")
 mount_point=""
 
 cleanup() {
@@ -16,12 +16,12 @@ trap cleanup EXIT HUP INT TERM
 
 curl --fail --location --silent --show-error "$base_url/$dmg_name" --output "$download_dir/$dmg_name"
 
-install_dir=${MAC_NOODLE_INSTALL_DIR:-"$HOME/Applications"}
+install_dir=${CLEANOLI_INSTALL_DIR:-"$HOME/Applications"}
 mkdir -p "$install_dir"
 mount_point=$(hdiutil attach -nobrowse -readonly "$download_dir/$dmg_name" | awk '/\/Volumes\// { print substr($0, index($0, "/Volumes/")); exit }')
-if [ -z "$mount_point" ] || [ ! -d "$mount_point/Mac Noodle.app" ]; then
-  printf '%s\n' "Mac Noodle: mounted DMG did not contain the application" >&2
+if [ -z "$mount_point" ] || [ ! -d "$mount_point/Cleanoli.app" ]; then
+  printf '%s\n' "Cleanoli: mounted DMG did not contain the application" >&2
   exit 1
 fi
-ditto "$mount_point/Mac Noodle.app" "$install_dir/Mac Noodle.app"
-printf '%s\n' "Installed Mac Noodle to $install_dir/Mac Noodle.app"
+ditto "$mount_point/Cleanoli.app" "$install_dir/Cleanoli.app"
+printf '%s\n' "Installed Cleanoli to $install_dir/Cleanoli.app"

@@ -1,24 +1,24 @@
-# Mac Noodle Web
+# Cleanoli Web
 
-The public download website for Mac Noodle. The site is a static Astro application with small Vue islands for the mobile navigation, terminal-command copy action, and FAQ.
+The public download website for Cleanoli. The site is a static Astro application with small Vue islands for the mobile navigation, terminal-command copy action, and FAQ.
 
 The repository intentionally focuses on distributing the current macOS release and linking to its source. It does not currently provide an API-backed release feed or make unapproved product capability claims.
 
 ## Public endpoints
 
 <<<<<<< HEAD
-- Website: <https://macnoodle.solvepao.com/>
-- Latest DMG: <https://github.com/solvePao/Mac-Noodle-Web/releases/latest/download/Mac-Noodle.dmg>
-- Release history: <https://github.com/solvePao/Mac-Noodle-Web/releases>
-- Source repository: <https://github.com/solvePao/Mac-Noodle-Web>
-- Installer script: <https://macnoodle.solvepao.com/install.sh>
+- Website: <https://cleanoli.solvepao.com/>
+- Latest DMG: <https://github.com/solvePao/Cleanoli-Web/releases/latest/download/Cleanoli.dmg>
+- Release history: <https://github.com/solvePao/Cleanoli-Web/releases>
+- Source repository: <https://github.com/solvePao/Cleanoli-Web>
+- Installer script: <https://cleanoli.solvepao.com/install.sh>
 
 ## Confirmed project decisions
 
 The following decisions describe the current implementation and should be treated as the baseline for future changes:
 
 1. **Cloudflare Workers Static Assets is the only website deployment target.** Cloudflare Workers Builds watches `main`, builds the Astro project, and deploys it without a repository-owned GitHub Actions workflow. The legacy GitHub Pages workflow has been removed.
-2. **The canonical public origin is `https://macnoodle.solvepao.com/`.** Canonical metadata, Open Graph metadata, documentation, and the terminal command use this domain.
+2. **The canonical public origin is `https://cleanoli.solvepao.com/`.** Canonical metadata, Open Graph metadata, documentation, and the terminal command use this domain.
 3. **There is no releases API integration.** Download and release-history links point directly to GitHub.
 4. **On-page release history is deferred.** It can be revisited later when an API or an approved static release manifest exists.
 5. **The DMG is the only published package asset.** The curl installer is hosted by the website.
@@ -60,26 +60,26 @@ The production output is fully static and is written to `dist/`.
 └── wrangler.jsonc
 ```
 
-## Install Mac Noodle from Terminal
+## Install Cleanoli from Terminal
 
 Run:
 
 ```sh
-curl -fsSL https://macnoodle.solvepao.com/install.sh | sh
+curl -fsSL https://cleanoli.solvepao.com/install.sh | sh
 ```
 
 The public script:
 
-1. Downloads `Mac-Noodle.dmg` from the latest GitHub release.
-2. Installs `Mac Noodle.app` in `~/Applications` (or `MAC_NOODLE_INSTALL_DIR`).
+1. Downloads `Cleanoli.dmg` from the latest GitHub release.
+2. Installs `Cleanoli.app` in `~/Applications` (or `CLEANOLI_INSTALL_DIR`).
 
 It does not request `sudo` or modify system files.
 
-To install into another directory, pass `MAC_NOODLE_INSTALL_DIR` to the shell that runs the script:
+To install into another directory, pass `CLEANOLI_INSTALL_DIR` to the shell that runs the script:
 
 ```sh
-curl -fsSL https://macnoodle.solvepao.com/install.sh |
-  MAC_NOODLE_INSTALL_DIR="$HOME/Applications" sh
+curl -fsSL https://cleanoli.solvepao.com/install.sh |
+  CLEANOLI_INSTALL_DIR="$HOME/Applications" sh
 ```
 
 ## Local development
@@ -186,7 +186,7 @@ The visual system is adapted from the Cappuccino palette in the attached Better 
 
 Dark mode follows `prefers-color-scheme`. There is no manual theme switcher.
 
-The layout also carries forward Better University's editorial composition, floating glass navigation, rounded cards, restrained gradients, and automatic light/dark presentation. The Mac Noodle favicon uses the same Cappuccino palette.
+The layout also carries forward Better University's editorial composition, floating glass navigation, rounded cards, restrained gradients, and a light presentation. The Cleanoli favicon uses the supplied app icon.
 
 ## Cloudflare Workers deployment
 
@@ -202,7 +202,7 @@ Commit and push to main
   -> npm clean-install installs the locked dependencies
   -> npm run build generates dist/
   -> npx wrangler deploy uploads dist/
-  -> macnoodle.solvepao.com receives the new version
+  -> cleanoli.solvepao.com receives the new version
 ```
 
 No GitHub Actions deployment workflow or repository secret is needed. The Cloudflare dashboard owns the repository connection and its build token.
@@ -211,24 +211,24 @@ No GitHub Actions deployment workflow or repository secret is needed. The Cloudf
 
 | Setting | Value |
 | --- | --- |
-| Git repository | `solvePao/Mac-Noodle-Web` |
+| Git repository | `solvePao/Cleanoli-Web` |
 | Production branch | `main` |
 | Build command | `npm run build` |
 | Deploy command | `npx wrangler deploy` |
 | Version command | `npx wrangler versions upload` |
 | Root directory | `/` |
 | Build variables and secrets | None |
-| Canonical domain | `macnoodle.solvepao.com` |
+| Canonical domain | `cleanoli.solvepao.com` |
 
 `wrangler.jsonc` names the Worker and points its static-assets directory at `./dist`. It deliberately has no `main` field because there is no Worker JavaScript yet, and it deliberately has no `pages_build_output_dir` because this is not a Pages project.
 
 ### First-time Cloudflare setup
 
 1. In Cloudflare, open **Workers & Pages** and choose **Create application**.
-2. Choose **Import a repository** for Workers, then select `solvePao/Mac-Noodle-Web`.
+2. Choose **Import a repository** for Workers, then select `solvePao/Cleanoli-Web`.
 3. Set the production branch and build settings to the values in the table above.
 4. Create the Worker and allow its first build to finish.
-5. Open the Worker's **Domains** tab and add `macnoodle.solvepao.com` as a custom domain.
+5. Open the Worker's **Domains** tab and add `cleanoli.solvepao.com` as a custom domain.
 6. Confirm the custom domain shows the production environment and loads the deployed site.
 
 After setup, every push to `main` triggers the same path. Pull requests and non-production branches may also create preview versions if non-production branch builds are enabled in Cloudflare.
@@ -268,9 +268,9 @@ The current assets-only configuration is intentionally ready to grow. If server-
 
 Docker is optional. The helper uses:
 
-- image: `mac-noodle-web`
-- container: `mac-noodle-dev`
-- dependency volume: `mac-noodle-nm`
+- image: `cleanoli-web`
+- container: `cleanoli-dev`
+- dependency volume: `cleanoli-nm`
 - host port: `4321`
 
 Build and start from a fresh image:
@@ -294,7 +294,7 @@ When dependencies change, recreate the dependency volume after stopping the cont
 
 ```sh
 ./setup.sh stop
-docker volume rm mac-noodle-nm
+docker volume rm cleanoli-nm
 ./setup.sh restart
 ```
 
@@ -307,7 +307,7 @@ When updating the public page:
 - do not add detailed product capabilities, performance numbers, compatibility claims, signing claims, or notarization claims without approval and evidence;
 - keep the primary package name aligned with the actual GitHub release asset;
 - keep release links static until the deferred release-history work is explicitly resumed; and
-- keep the canonical origin and installer host on `macnoodle.solvepao.com`.
+- keep the canonical origin and installer host on `cleanoli.solvepao.com`.
 
 ## Deferred work
 

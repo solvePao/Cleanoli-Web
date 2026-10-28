@@ -3,16 +3,24 @@ import { ref } from 'vue'
 
 const faqs = [
   {
+    q: 'How do activation and updates work?',
+    a: 'App Store installations use Apple purchases and App Store updates; TestFlight uses sandbox purchases and beta updates. DMG and Homebrew installations require Vending Machine access. DMG updates use the app’s signed update feed, while Homebrew updates use brew upgrade --cask cleanoli. Purchases do not transfer between Apple and direct distribution.',
+  },
+  {
+    q: 'What does Cleanoli help me clean?',
+    a: 'Cleanoli helps you find caches, logs, large files, and other disk clutter, then shows it for review before anything moves to Trash.',
+  },
+  {
+    q: 'Will it delete files automatically?',
+    a: 'No. Cleanoli is review-first: you inspect and select items before cleaning, and selected files move to Trash.',
+  },
+  {
+    q: 'Is Cleanoli notarized by Apple?',
+    a: 'Yes. Direct-download releases are signed with Developer ID, notarized by Apple, and stapled for macOS verification.',
+  },
+  {
     q: 'Where does the download come from?',
-    a: 'The download buttons point directly to the latest Mac-Noodle.dmg asset in the project’s GitHub Releases.',
-  },
-  {
-    q: 'Does this website use a releases API?',
-    a: 'No. Release history is deferred for now, so the website uses static GitHub links without making a release API request.',
-  },
-  {
-    q: 'Where can I review the source?',
-    a: 'Use the GitHub links in the header or footer to open the public project repository.',
+    a: 'Download buttons point directly to the latest Cleanoli.dmg published in the project’s GitHub Releases.',
   },
 ]
 

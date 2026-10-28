@@ -2,16 +2,21 @@
 import Layout from '../layouts/Layout.astro';
 import SiteHeader from '../components/SiteHeader.vue';
 import Hero from '../components/Hero.vue';
+import DownloadOptions from '../components/DownloadOptions.vue';
 import FeatureCards from '../components/FeatureCards.vue';
 import ProductGallery from '../components/ProductGallery.vue';
 import FaqSection from '../components/FaqSection.vue';
 import BottomCta from '../components/BottomCta.vue';
 ---
 
-<Layout title="Mac Noodle — Download for macOS">
+<Layout
+  title="Cleanoli — Disk Cleaner & Storage Manager for macOS"
+  description="Clean disk clutter, understand storage, and manage space on your Mac with review-first controls."
+>
   <SiteHeader client:load />
   <main>
     <Hero />
+    <DownloadOptions />
     <FeatureCards />
     <ProductGallery />
     <FaqSection client:load />

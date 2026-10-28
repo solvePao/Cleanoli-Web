@@ -1,13 +1,13 @@
 import { mount } from '@vue/test-utils'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import FaqSection from '../src/components/FaqSection.vue'
+import DownloadOptions from '../src/components/DownloadOptions.vue'
 import Hero from '../src/components/Hero.vue'
 import SiteHeader from '../src/components/SiteHeader.vue'
 
 afterEach(() => {
   vi.useRealTimers()
   document.documentElement.removeAttribute('data-theme')
-  globalThis.localStorage?.removeItem('mac-noodle-theme')
   vi.unstubAllGlobals()
 })
 
@@ -28,7 +28,7 @@ describe('primary navigation', () => {
 
   it('links releases directly while the API-backed feed is absent', () => {
     const wrapper = mount(SiteHeader)
-    const releases = wrapper.get('a[href="https://github.com/solvePao/Mac-Noodle-Web/releases"]')
+    const releases = wrapper.get('a[href="https://github.com/solvePao/Cleanoli-Web/releases"]')
 
     expect(releases.text()).toBe('Releases')
   })
@@ -40,23 +40,9 @@ describe('primary navigation', () => {
     expect(support.text()).toBe('Support')
   })
 
-  it('defaults to light mode and lets visitors switch to dark mode', async () => {
-    const preferences = new Map<string, string>()
-    vi.stubGlobal('localStorage', {
-      getItem: (key: string) => preferences.get(key) ?? null,
-      setItem: (key: string, value: string) => preferences.set(key, value),
-      removeItem: (key: string) => preferences.delete(key),
-    })
+  it('keeps the interface permanently light', () => {
     const wrapper = mount(SiteHeader)
-    const themeToggle = wrapper.get('button[aria-label="Switch to dark mode"]')
-
-    expect(document.documentElement.dataset.theme).toBe('light')
-
-    await themeToggle.trigger('click')
-
-    expect(document.documentElement.dataset.theme).toBe('dark')
-    expect(preferences.get('mac-noodle-theme')).toBe('dark')
-    expect(wrapper.get('button[aria-label="Switch to light mode"]')).toBeTruthy()
+    expect(wrapper.find('.theme-toggle').exists()).toBe(false)
   })
 })
 
@@ -64,10 +50,28 @@ describe('download actions', () => {
   it('uses the static latest DMG link in the hero', () => {
     const wrapper = mount(Hero)
     const download = wrapper.get(
-      'a[href="https://github.com/solvePao/Mac-Noodle-Web/releases/latest/download/Mac-Noodle.dmg"]',
+      'a[href="https://github.com/solvePao/Cleanoli-Web/releases/latest/download/Cleanoli.dmg"]',
     )
 
     expect(download.text()).toContain('Download Latest')
+  })
+
+  it('offers the latest DMG and the documented Homebrew installation', () => {
+    const wrapper = mount(DownloadOptions)
+
+    expect(wrapper.get('a[href="https://github.com/solvePao/Cleanoli-Web/releases/latest/download/Cleanoli.dmg"]')).toBeTruthy()
+    expect(wrapper.text()).toContain('brew tap solvePao/tap')
+    expect(wrapper.text()).toContain('brew install --cask cleanoli')
+    expect(wrapper.get('a[href="https://github.com/solvePao/homebrew-tap"]')).toBeTruthy()
+  })
+
+  it('marks the Mac App Store option as coming soon without a destination link', () => {
+    const wrapper = mount(DownloadOptions)
+    const appStoreCard = wrapper.get('.download-card-soon')
+
+    expect(appStoreCard.text()).toContain('Mac App Store')
+    expect(appStoreCard.text()).toContain('Coming soon')
+    expect(appStoreCard.find('a').exists()).toBe(false)
   })
 
 })

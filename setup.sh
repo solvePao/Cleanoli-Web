@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-IMAGE="mac-noodle-web"
-CONTAINER="mac-noodle-dev"
+IMAGE="cleanoli-web"
+CONTAINER="cleanoli-dev"
 # Named volume: keeps Linux-built node_modules separate from the host macOS modules
-NM_VOLUME="mac-noodle-nm"
+NM_VOLUME="cleanoli-nm"
 PORT="4321"
 
 usage() {

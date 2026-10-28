@@ -2,23 +2,23 @@
 import Layout from '../layouts/Layout.astro';
 import SiteHeader from '../components/SiteHeader.vue';
 
-const supportUrl = 'https://github.com/solvePao/Mac-Noodle-Web/issues/new';
+const supportUrl = 'https://github.com/solvePao/Cleanoli-Web/issues/new';
 const supportEmail = 'contact@solvepao.com';
 ---
 
 <Layout
-  title="Support — Mac Noodle"
-  description="Get help with downloading, verifying, or installing Mac Noodle for macOS."
+  title="Support — Cleanoli"
+  description="Get help with downloading, verifying, or installing Cleanoli for macOS."
   canonicalPath="/support"
 >
   <SiteHeader client:load />
   <main class="support-main">
     <section class="support-hero" aria-labelledby="support-title">
       <div class="support-copy">
-        <p class="eyebrow"><i></i> Mac Noodle support</p>
+        <p class="eyebrow"><i></i> Cleanoli support</p>
         <h1 id="support-title">Questions?<br /><span class="text-accent">Ask away.</span></h1>
         <p class="lede">
-          If you are stuck while downloading, verifying, or installing Mac Noodle, tell us what
+          If you are stuck while downloading, verifying, or installing Cleanoli, tell us what
           happened and we will help you find the next step.
         </p>
         <div class="actions">
@@ -56,25 +56,32 @@ const supportEmail = 'contact@solvepao.com';
       <div class="help-grid">
         <article class="help-card">
           <span class="help-label">Download</span>
-          <h3>The ZIP did not download</h3>
-          <p>Open the latest release directly on GitHub and retry the Mac-Noodle.zip download.</p>
-          <a href="https://github.com/solvePao/Mac-Noodle-Web/releases" target="_blank" rel="noopener">Open releases <span aria-hidden="true">→</span></a>
+          <h3>The DMG did not download</h3>
+          <p>Open the latest release directly on GitHub and retry the Cleanoli.dmg download.</p>
+          <a href="https://github.com/solvePao/Cleanoli-Web/releases" target="_blank" rel="noopener">Open releases <span aria-hidden="true">→</span></a>
         </article>
 
         <article class="help-card">
           <span class="help-label">Verification</span>
           <h3>The checksum did not match</h3>
-          <p>Delete the incomplete ZIP and download a fresh copy from the latest release. Do not use a file that fails verification.</p>
-          <a href="https://github.com/solvePao/Mac-Noodle-Web/releases" target="_blank" rel="noopener">Open releases <span aria-hidden="true">→</span></a>
+          <p>Delete the incomplete DMG and download a fresh copy from the latest release. Do not use a file that fails verification.</p>
+          <a href="https://github.com/solvePao/Cleanoli-Web/releases" target="_blank" rel="noopener">Open releases <span aria-hidden="true">→</span></a>
         </article>
 
         <article class="help-card">
           <span class="help-label">Installation</span>
-          <h3>You have the verified ZIP</h3>
-          <p>Unzip the package, then move the application into your Applications folder manually.</p>
+          <h3>You have the verified DMG</h3>
+          <p>Open the disk image, drag Cleanoli into Applications, then select Activate with Vending Machine in the app.</p>
           <a href="/#faq-title">Read common questions <span aria-hidden="true">→</span></a>
         </article>
       </div>
+    </section>
+
+    <section class="quick-help" aria-labelledby="activation-help-title">
+      <h2 id="activation-help-title">Activation and updates</h2>
+      <p>App Store installations purchase and restore access with Apple. TestFlight purchases are sandbox purchases and do not transfer to the App Store.</p>
+      <p>DMG and Homebrew installations activate through <a href="https://vendingmachine.solvepao.com/">Vending Machine</a>. Confirm the activation link inside Cleanoli. Apple purchases do not unlock direct installations.</p>
+      <p>Use TestFlight for beta updates, the App Store for Apple releases, Check for Updates in DMG installations, or <code>brew upgrade --cask cleanoli</code> for Homebrew installations.</p>
     </section>
 
     <section class="support-cta" aria-labelledby="still-stuck-title">
@@ -103,24 +110,24 @@ const supportEmail = 'contact@solvepao.com';
   .support-copy .privacy-note {
     max-width: 580px;
     margin: 22px 0 0;
-    color: var(--noodle-text-muted);
+    color: var(--cleanoli-text-muted);
     font-size: 12px;
   }
 
   .support-card {
     padding: clamp(28px, 4vw, 46px);
     background:
-      radial-gradient(circle at 100% 0%, var(--noodle-bg-subtle), transparent 18rem),
-      var(--noodle-surface);
-    border: 1px solid var(--noodle-border);
+      radial-gradient(circle at 100% 0%, var(--cleanoli-bg-subtle), transparent 18rem),
+      var(--cleanoli-surface);
+    border: 1px solid var(--cleanoli-border);
     border-radius: 30px;
-    box-shadow: var(--noodle-shadow);
+    box-shadow: var(--cleanoli-shadow);
     transform: rotate(1.2deg);
   }
 
   .card-kicker,
   .help-label {
-    color: var(--noodle-accent);
+    color: var(--cleanoli-accent);
     font-size: 10px;
     font-weight: 820;
     letter-spacing: 0.12em;
@@ -145,8 +152,8 @@ const supportEmail = 'contact@solvepao.com';
     align-items: center;
     gap: 14px;
     padding: 16px;
-    background: color-mix(in srgb, var(--noodle-bg) 72%, var(--noodle-surface));
-    border: 1px solid var(--noodle-border);
+    background: color-mix(in srgb, var(--cleanoli-bg) 72%, var(--cleanoli-surface));
+    border: 1px solid var(--cleanoli-border);
     border-radius: 15px;
   }
 
@@ -156,7 +163,7 @@ const supportEmail = 'contact@solvepao.com';
     width: 38px;
     height: 38px;
     flex: 0 0 38px;
-    background: var(--noodle-accent);
+    background: var(--cleanoli-accent);
     border-radius: 11px;
     color: #fff;
     font-size: 13px;
@@ -166,12 +173,12 @@ const supportEmail = 'contact@solvepao.com';
   .support-card strong,
   .support-card small { display: block; }
   .support-card strong { font-size: 14px; }
-  .support-card small { margin-top: 2px; color: var(--noodle-text-muted); font-size: 12px; line-height: 1.5; }
+  .support-card small { margin-top: 2px; color: var(--cleanoli-text-muted); font-size: 12px; line-height: 1.5; }
 
   .quick-help {
     padding: 76px 64px;
-    background: color-mix(in srgb, var(--noodle-surface) 78%, transparent);
-    border: 1px solid var(--noodle-border);
+    background: color-mix(in srgb, var(--cleanoli-surface) 78%, transparent);
+    border: 1px solid var(--cleanoli-border);
     border-radius: 32px;
   }
 
@@ -182,16 +189,16 @@ const supportEmail = 'contact@solvepao.com';
     display: flex;
     min-height: 260px;
     padding: 28px;
-    background: var(--noodle-surface);
-    border: 1px solid var(--noodle-border);
+    background: var(--cleanoli-surface);
+    border: 1px solid var(--cleanoli-border);
     border-radius: 22px;
-    box-shadow: var(--noodle-shadow);
+    box-shadow: var(--cleanoli-shadow);
     flex-direction: column;
   }
 
   .help-card h3 { margin: 24px 0 8px; font-size: 20px; line-height: 1.2; letter-spacing: -0.03em; }
-  .help-card p { margin: 0; color: var(--noodle-text-muted); font-size: 14px; line-height: 1.7; }
-  .help-card a { margin-top: auto; padding-top: 26px; color: var(--noodle-accent); font-size: 13px; font-weight: 760; text-decoration: none; }
+  .help-card p { margin: 0; color: var(--cleanoli-text-muted); font-size: 14px; line-height: 1.7; }
+  .help-card a { margin-top: auto; padding-top: 26px; color: var(--cleanoli-accent); font-size: 13px; font-weight: 760; text-decoration: none; }
   .help-card a:hover { text-decoration: underline; text-underline-offset: 4px; }
 
   .support-cta {
@@ -201,16 +208,16 @@ const supportEmail = 'contact@solvepao.com';
     gap: 48px;
     margin: 80px 0 96px;
     padding: 54px 58px;
-    background:
-      radial-gradient(circle at 88% 10%, rgba(190, 155, 123, 0.22), transparent 28rem),
-      var(--noodle-bg-dark);
+    background: #ffffff;
+    border: 1px solid var(--cleanoli-border);
+    box-shadow: var(--cleanoli-shadow);
     border-radius: 28px;
-    color: #fff4e6;
+    color: var(--cleanoli-text);
   }
 
-  .support-cta .eyebrow { color: #be9b7b; border-color: rgba(190, 155, 123, 0.26); background: rgba(190, 155, 123, 0.12); }
+  .support-cta .eyebrow { color: var(--cleanoli-text); border-color: var(--cleanoli-border); background: var(--cleanoli-bg-subtle); }
   .support-cta h2 { max-width: 670px; font-size: clamp(36px, 5vw, 56px); }
-  .support-cta p:not(.eyebrow) { max-width: 680px; margin: 16px 0 0; color: #be9b7b; font-size: 15px; }
+  .support-cta p:not(.eyebrow) { max-width: 680px; margin: 16px 0 0; color: var(--cleanoli-text-muted); font-size: 15px; }
   .support-cta .button { flex-shrink: 0; }
 
   @media (max-width: 960px) {
