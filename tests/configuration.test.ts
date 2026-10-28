@@ -33,16 +33,18 @@ describe('Cloudflare Workers deployment', () => {
   it('uses the custom Cloudflare domain as the public origin', () => {
     const publicFiles = [read('README.md'), read('src/layouts/Layout.astro'), read('src/components/Hero.vue')].join('\n')
 
-    expect(publicFiles).toContain('https://macnoodle.solvepao.com')
+    expect(publicFiles).toContain('https://cleanoli.solvepao.com')
     expect(publicFiles).not.toContain('mac-noodle-web.pages.dev')
     expect(publicFiles).not.toContain('Hosted on Cloudflare Pages')
   })
 
-  it('documents native Workers Builds instead of repository-owned deployment automation', () => {
+  it('documents both the canonical site and the update-feed deployment', () => {
     const readme = read('README.md')
 
     expect(readme).toContain('Workers Builds')
     expect(readme).toContain('`npx wrangler deploy`')
+    expect(readme).toContain('.github/workflows/deploy-pages.yml')
+    expect(existsSync(join(root, '.github/workflows/deploy-pages.yml'))).toBe(true)
     expect(readme).not.toContain('Cloudflare Pages is the sole deployment path')
     expect(existsSync(join(root, '.github/workflows/deploy.yml'))).toBe(false)
   })
@@ -63,7 +65,7 @@ describe('static release integration', () => {
   it('uses the canonical repository in the installer', () => {
     const installer = read('public/install.sh')
 
-    expect(installer).toContain('readonly repository="solvePao/Mac-Noodle-Web"')
+    expect(installer).toContain('readonly repository="solvePao/Cleanoli-Web"')
     expect(installer).not.toContain('Mac-Noodle-App')
   })
 })
@@ -80,16 +82,15 @@ describe('container context', () => {
 })
 
 describe('visual theme', () => {
-  it('uses the Better University Cappuccino palette with light mode as the default', () => {
+  it('uses a permanent white-only visual system', () => {
     const layout = read('src/layouts/Layout.astro')
 
     expect(layout).toContain('<html lang="en" data-theme="light">')
-    expect(layout).toContain(':root[data-theme="dark"]')
+    expect(layout).not.toContain(':root[data-theme="dark"]')
     expect(layout).not.toContain('@media (prefers-color-scheme: dark)')
-    expect(layout).toContain('--noodle-accent: #854442')
-    expect(layout).toContain('--noodle-bg: #fff4e6')
-    expect(layout).toContain('--noodle-accent: #be9b7b')
-    expect(layout).toContain('--noodle-bg: #241b19')
+    expect(layout).toContain('--cleanoli-accent: #111111')
+    expect(layout).toContain('--cleanoli-bg: #ffffff')
+    expect(layout).not.toContain('mac-noodle-theme')
   })
 })
 
@@ -98,14 +99,31 @@ describe('product artwork', () => {
     const hero = read('src/components/Hero.vue')
     const gallery = read('src/components/ProductGallery.vue')
     const header = read('src/components/SiteHeader.vue')
+    const layout = read('src/layouts/Layout.astro')
 
     expect(existsSync(join(root, 'assets/4A035189-C821-4892-B2C4-FE461C30127B.png'))).toBe(true)
-    expect(existsSync(join(root, 'assets/29FAE49F-DEF2-4403-9C96-CA1C60329E99.png'))).toBe(true)
-    expect(hero).toContain('cleanSmarterAsset.src')
-    expect(gallery).toContain('storageOverviewAsset.src')
-    expect(gallery).toContain('reclaimableSpaceAsset.src')
-    expect(gallery).toContain('controlAsset.src')
+    expect(hero).toContain('cleanupAsset.src')
+    expect(gallery).toContain('overviewAsset.src')
+    expect(gallery).toContain('explorerAsset.src')
+    expect(gallery).toContain('analyzerAsset.src')
     expect(header).toContain('appIconAsset.src')
+    expect(layout).toContain('rel="apple-touch-icon" href={appIcon.src}')
+    expect(layout).not.toContain('href="/favicon.svg"')
+  })
+})
+
+describe('product positioning', () => {
+  it('describes Cleanoli as a notarized disk cleaner and storage manager', () => {
+    const homepage = [
+      read('src/pages/index.astro'),
+      read('src/components/Hero.vue'),
+      read('src/components/FeatureCards.vue'),
+    ].join('\n')
+
+    expect(homepage).toContain('Disk Cleaner & Storage Manager')
+    expect(homepage).toContain('Notarized by Apple')
+    expect(homepage).toContain('5+ years')
+    expect(homepage).not.toContain('Cleanoli for macOS')
   })
 })
 
@@ -122,7 +140,7 @@ describe('support page', () => {
 })
 
 describe('company attribution', () => {
-  it('identifies SolvePao Research as Mac Noodle\'s parent company', () => {
+  it('identifies SolvePao Research as Cleanoli\'s parent company', () => {
     const layout = read('src/layouts/Layout.astro')
 
     expect(layout).toContain('A product of SolvePao Research.')

@@ -1,28 +1,24 @@
 <script setup lang="ts">
-import storageOverviewAsset from '../../assets/56573127-F4A1-4FB3-9D70-367F96F19F95.png'
-import reclaimableSpaceAsset from '../../assets/6E76D9C3-7CEF-4F5B-B228-B6BFD78DF633.png'
-import controlAsset from '../../assets/B8DC2B05-7C08-4627-87CB-6D28A30991CA.png'
-
-const storageOverviewImage = storageOverviewAsset.src
-const reclaimableSpaceImage = reclaimableSpaceAsset.src
-const controlImage = controlAsset.src
+import overviewAsset from '../../assets/cleanoli-overview.png'
+import explorerAsset from '../../assets/cleanoli-space-explorer.png'
+import analyzerAsset from '../../assets/cleanoli-disk-analyzer.png'
 
 const visuals = [
   {
-    src: storageOverviewImage,
-    alt: 'Mac Noodle storage overview with space details and a Noodle Scan card',
+    src: overviewAsset.src,
+    alt: 'Cleanoli storage overview',
     title: 'See storage clearly',
     description: 'Get a calm visual overview of used, available, and purgeable space on your Mac.',
   },
   {
-    src: reclaimableSpaceImage,
-    alt: 'Mac Noodle reclaimable storage overview with macOS management options',
+    src: analyzerAsset.src,
+    alt: 'Cleanoli disk analyzer',
     title: 'Understand reclaimable space',
     description: 'Know what macOS can free automatically and what you can review yourself.',
   },
   {
-    src: controlImage,
-    alt: 'Mac Noodle review-before-cleaning screen with manual controls',
+    src: explorerAsset.src,
+    alt: 'Cleanoli Space Explorer',
     title: 'Stay in control',
     description: 'Preview, select, and clean with confidence—nothing is removed automatically.',
   },
@@ -32,8 +28,8 @@ const visuals = [
 <template>
   <section class="product-gallery" aria-labelledby="gallery-title">
     <div class="gallery-heading">
-      <p class="eyebrow">Built for clarity</p>
-      <h2 id="gallery-title">A cleaner Mac, <span class="text-accent">on your terms.</span></h2>
+      <p class="eyebrow">Your storage, explained</p>
+      <h2 id="gallery-title">See what fills your disk.<br /><span class="text-accent-light">Decide what stays.</span></h2>
     </div>
     <div class="gallery-list">
       <article
@@ -43,7 +39,7 @@ const visuals = [
         :class="{ 'gallery-card-reversed': index % 2 === 1 }"
       >
         <div class="gallery-media">
-          <img :src="visual.src" :alt="visual.alt" width="1586" height="992" loading="lazy" />
+          <img :src="visual.src" :alt="visual.alt" width="2560" height="1600" loading="lazy" />
         </div>
         <div class="gallery-copy">
           <span class="gallery-index">0{{ index + 1 }}</span>
@@ -65,25 +61,25 @@ const visuals = [
   align-items: center;
   gap: clamp(22px, 4vw, 56px);
   padding: clamp(16px, 2vw, 24px);
-  background: linear-gradient(135deg, var(--noodle-surface), color-mix(in srgb, var(--noodle-bg-subtle) 28%, var(--noodle-surface)));
-  border: 1px solid var(--noodle-border);
+  background: linear-gradient(135deg, var(--cleanoli-surface), color-mix(in srgb, var(--cleanoli-bg-subtle) 28%, var(--cleanoli-surface)));
+  border: 1px solid var(--cleanoli-border);
   border-radius: 24px;
-  box-shadow: var(--noodle-shadow);
+  box-shadow: var(--cleanoli-shadow);
 }
-.gallery-card:nth-child(even) { background: linear-gradient(225deg, var(--noodle-surface), color-mix(in srgb, var(--noodle-success-wash) 42%, var(--noodle-surface))); }
+.gallery-card:nth-child(even) { background: linear-gradient(225deg, var(--cleanoli-surface), color-mix(in srgb, var(--cleanoli-success-wash) 42%, var(--cleanoli-surface))); }
 .gallery-card-reversed .gallery-media { order: 2; }
 .gallery-media {
   overflow: hidden;
-  background: var(--noodle-bg);
-  border: 1px solid var(--noodle-border);
+  background: var(--cleanoli-bg);
+  border: 1px solid var(--cleanoli-border);
   border-radius: 16px;
-  box-shadow: 0 14px 32px color-mix(in srgb, var(--noodle-ink) 10%, transparent);
+  box-shadow: 0 14px 32px color-mix(in srgb, var(--cleanoli-ink) 10%, transparent);
 }
-.gallery-media img { display: block; width: 100%; height: auto; }
+.gallery-media img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: center; }
 .gallery-copy { max-width: 390px; padding: 10px 4px; }
-.gallery-index { display: block; margin-bottom: 14px; color: var(--noodle-accent); font-size: 11px; font-weight: 850; letter-spacing: 0.14em; }
+.gallery-index { display: block; margin-bottom: 14px; color: var(--cleanoli-accent); font-size: 11px; font-weight: 850; letter-spacing: 0.14em; }
 .gallery-copy h3 { margin: 0; font-size: 21px; letter-spacing: -0.03em; }
-.gallery-copy p { margin: 8px 0 0; color: var(--noodle-text-muted); font-size: 14px; line-height: 1.7; }
+.gallery-copy p { margin: 8px 0 0; color: var(--cleanoli-text-muted); font-size: 14px; line-height: 1.7; }
 
 @media (max-width: 760px) {
   .product-gallery { padding: 72px 0; }
