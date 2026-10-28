@@ -38,11 +38,13 @@ describe('Cloudflare Workers deployment', () => {
     expect(publicFiles).not.toContain('Hosted on Cloudflare Pages')
   })
 
-  it('documents native Workers Builds instead of repository-owned deployment automation', () => {
+  it('documents both the canonical site and the update-feed deployment', () => {
     const readme = read('README.md')
 
     expect(readme).toContain('Workers Builds')
     expect(readme).toContain('`npx wrangler deploy`')
+    expect(readme).toContain('.github/workflows/deploy-pages.yml')
+    expect(existsSync(join(root, '.github/workflows/deploy-pages.yml'))).toBe(true)
     expect(readme).not.toContain('Cloudflare Pages is the sole deployment path')
     expect(existsSync(join(root, '.github/workflows/deploy.yml'))).toBe(false)
   })

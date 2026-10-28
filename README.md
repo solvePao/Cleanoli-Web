@@ -8,20 +8,19 @@ The repository intentionally focuses on distributing the current macOS release a
 
 <<<<<<< HEAD
 - Website: <https://cleanoli.solvepao.com/>
-- Latest DMG: <https://github.com/solvePao/Cleanoli-Web/releases/latest/download/Cleanoli.dmg>
+- Cleanoli DMG and Homebrew releases are being prepared.
 - Release history: <https://github.com/solvePao/Cleanoli-Web/releases>
 - Source repository: <https://github.com/solvePao/Cleanoli-Web>
-- Installer script: <https://cleanoli.solvepao.com/install.sh>
 
 ## Confirmed project decisions
 
 The following decisions describe the current implementation and should be treated as the baseline for future changes:
 
-1. **Cloudflare Workers Static Assets is the only website deployment target.** Cloudflare Workers Builds watches `main`, builds the Astro project, and deploys it without a repository-owned GitHub Actions workflow. The legacy GitHub Pages workflow has been removed.
+1. **Cloudflare Workers serves the canonical website.** Workers Builds watches `main`. A separate GitHub Actions workflow also deploys the static output to GitHub Pages, which serves signed update feeds used by installed apps.
 2. **The canonical public origin is `https://cleanoli.solvepao.com/`.** Canonical metadata, Open Graph metadata, documentation, and the terminal command use this domain.
 3. **There is no releases API integration.** Download and release-history links point directly to GitHub.
 4. **On-page release history is deferred.** It can be revisited later when an API or an approved static release manifest exists.
-5. **The DMG is the only published package asset.** The curl installer is hosted by the website.
+5. **Cleanoli distribution is being prepared.** The new DMG and Homebrew cask must be published before their installation links are advertised.
 6. **Testimonials are omitted.** Previous testimonials were not approved and have been removed.
 7. **Detailed product capability marketing is omitted until approved.** Current copy is limited to verifiable information about downloads, the installer, and repository links.
 8. **The site uses Better University's Cappuccino theme.** It supports matching light and dark palettes based on the operating-system preference.
@@ -33,6 +32,7 @@ The following decisions describe the current implementation and should be treate
 - [Vitest](https://vitest.dev/) and Vue Test Utils for automated tests
 - [Cloudflare Workers Static Assets](https://developers.cloudflare.com/workers/static-assets/) for hosting
 - Cloudflare Workers Builds for automatic deployments from `main`
+- GitHub Actions and Pages for the existing update-feed origin
 - Wrangler for deployment configuration and optional manual deployment
 - Docker as an optional development environment
 
@@ -190,7 +190,7 @@ The layout also carries forward Better University's editorial composition, float
 
 ## Cloudflare Workers deployment
 
-Cloudflare Workers Static Assets is the sole deployment target for this site. This matches the deployment model used by the personal website: Cloudflare owns the Git connection, and a push to the production branch creates a Workers Build automatically.
+Cloudflare Workers Static Assets serves the canonical site. Cloudflare owns the Git connection, and a push to the production branch creates a Workers Build automatically. The repository's `deploy-pages.yml` workflow separately publishes the static output to GitHub Pages, including the existing signed update feeds used by installed apps.
 
 The site currently has no Worker entry point and no server-side API. It is an assets-only Worker: Astro generates `dist/`, and Cloudflare uploads and serves those files at the edge. A Worker entry point can be added later if the product needs redirects, request handling, an API, authentication, or proxy behavior.
 
@@ -205,7 +205,7 @@ Commit and push to main
   -> cleanoli.solvepao.com receives the new version
 ```
 
-No GitHub Actions deployment workflow or repository secret is needed. The Cloudflare dashboard owns the repository connection and its build token.
+The Cloudflare dashboard owns its repository connection and build token. GitHub Pages is deployed separately by `.github/workflows/deploy-pages.yml`; do not remove that workflow or alter signed feeds without a coordinated update migration.
 
 ### Workers Builds settings
 
