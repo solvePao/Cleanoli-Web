@@ -30,7 +30,7 @@
     "@astrojs/check": "^0.9.4",
     "@vitejs/plugin-vue": "^6.0.8",
     "@vue/test-utils": "^2.4.6",
-    "happy-dom": "^20.11.8",
+    "happy-dom": "^21.0.4",
     "typescript": "^5.9.2",
     "vitest": "^4.1.11",
     "wrangler": "^4.126.0"
